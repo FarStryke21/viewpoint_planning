@@ -12,6 +12,7 @@ find_package(catkin REQUIRED COMPONENTS
   geometry_msgs
   rospy
   sensor_msgs
+  gazebo_msgs
   std_msgs
   visualization_msgs
   tf
@@ -65,7 +66,6 @@ find_package(catkin REQUIRED COMPONENTS
 add_service_files(
   FILES
   LoadMesh.srv
-  CaptureSurface.srv
 )
 
 ## Generate actions in the 'action' folder
@@ -220,3 +220,7 @@ target_link_libraries(load_mesh_service ${catkin_LIBRARIES})
 add_executable(measurement_manager src/measurement_manager.cpp)
 add_dependencies(measurement_manager ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(measurement_manager ${catkin_LIBRARIES})
+
+add_executable(eg_spherical src/eg_spherical.cpp)
+add_dependencies(eg_spherical ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(eg_spherical ${catkin_LIBRARIES})
