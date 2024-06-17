@@ -1,0 +1,31 @@
+<launch>
+  <arg name="mesh_file" default="test_bunny"/>
+  <arg name="world_file" default="$(find viewpoint_planning)/worlds/test_world.world"/>
+  <param name="mesh_directory" value="$(find viewpoint_planning)/gazebo_models/"/>
+  <!-- Load the URDF file into the parameter server -->
+  <param name="robot_description" command="xacro '$(find viewpoint_planning)/urdf/sl_sensor.urdf.xacro'" />
+
+
+  <env name="GAZEBO_MODEL_PATH" value="$(find viewpoint_planning)/gazebo_models"/>
+
+  <!-- Launch Gazebo -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find viewpoint_planning)/config/viewpoint.world"/>
+  </include>
+
+  <!-- Launch RViz -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find viewpoint_planning)/config/viewpoint.rviz"/>
+
+  <!-- Spawn Robot and Start Sync -->
+    <!-- Spawn the URDF model -->
+      <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" output="screen" args="-urdf -param robot_description -model structured_light_sensor_robot" />
+    <!-- Launch robot_state_publisher -->
+      <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+    <!-- sync gazebo and rviz -->
+      <node name="syncGazeboRviz" pkg="viewpoint_planning" type="gazebo_rviz_sync.py"/>
+
+  <!-- Start Service Servers -->
+      <node name="load_mesh_service_server" pkg="viewpoint_planning" type="load_mesh_service" output="screen"/>
+      <node name="measurement_manager" pkg="viewpoint_planning" type="measurement_manager" output="screen"/>
+  
+</launch>

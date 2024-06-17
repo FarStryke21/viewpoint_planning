@@ -1,0 +1,154 @@
+<?xml version='1.0'?>
+<sdf version='1.4'>
+<model name="environment">
+  <pose>0 0 0 0 0 0</pose>
+  <static>1</static>
+  
+  <link name="support_frame">
+   <collision name="collision">
+    <pose>0 0 0 0 0 0</pose>
+    <geometry>
+     <mesh>
+      <uri>model://support_frame/mesh/new_workspace.dae</uri>
+     </mesh>
+    </geometry>
+    <surface>
+     <friction>
+       <ode>
+         <mu>2</mu>
+         <mu2>2</mu2>
+       </ode>
+       <torsional>
+         <ode/>
+       </torsional>
+     </friction>
+     <contact>
+       <ode/>
+     </contact>
+     <bounce/>
+    </surface>
+    <max_contacts>10</max_contacts>
+   </collision>
+   <inertial>
+    <mass>1000</mass>
+   </inertial>
+   <visual name="visual">
+    <geometry>
+     <mesh>
+      <uri>model://support_frame/mesh/new_workspace.dae</uri>
+     </mesh>
+    </geometry>
+   </visual>
+   <self_collide>0</self_collide>
+   <enable_wind>0</enable_wind>
+   <kinematic>0</kinematic>
+  </link>
+
+  <link name="box_top">
+   <pose>0 0.645 .107 0 0 0</pose>
+   <collision name="collision">
+    <geometry>
+     <mesh>
+      <uri>model://support_frame/mesh/box_top.dae</uri>
+     </mesh>
+    </geometry>
+    <surface>
+     <friction>
+       <ode>
+         <mu>2</mu>
+         <mu2>2</mu2>
+       </ode>
+       <torsional>
+         <ode/>
+       </torsional>
+     </friction>
+     <contact>
+       <ode/>
+     </contact>
+     <bounce/>
+    </surface>
+    <max_contacts>10</max_contacts>
+   </collision>
+   <inertial>
+    <mass>1000</mass>
+   </inertial>
+   <visual name="visual">
+    <geometry>
+     <mesh>
+      <uri>model://support_frame/mesh/box_top.dae</uri>
+     </mesh>
+    </geometry>
+    <material>
+      <ambient>1 0 0 1</ambient>
+      <diffuse>1 0 0 1</diffuse>
+      <specular>0.1 0.1 0.1 1</specular>
+      <emissive>0 0 0 0</emissive>
+    </material>
+   </visual>
+   <self_collide>0</self_collide>
+   <enable_wind>0</enable_wind>
+   <kinematic>0</kinematic>
+  </link>
+
+
+  
+  <link name="scan_plane">
+   <pose>-.05 -0.65 .083 0 0 0</pose>
+   <collision name="collision">
+    <geometry>
+     <mesh>
+      <uri>model://support_frame/mesh/scan_plane_1deg.dae</uri>
+     </mesh>
+    </geometry>
+    <surface>
+     <friction>
+       <ode>
+         <mu>2</mu>
+         <mu2>2</mu2>
+       </ode>
+       <torsional>
+         <ode/>
+       </torsional>
+     </friction>
+     <contact>
+       <ode/>
+     </contact>
+     <bounce/>
+    </surface>
+    <max_contacts>10</max_contacts>
+   </collision>
+   <inertial>
+    <mass>1000</mass>
+   </inertial>
+   <visual name="visual">
+    <geometry>
+     <mesh>
+      <uri>model://support_frame/mesh/scan_plane_1deg.dae</uri>
+     </mesh>
+    </geometry>
+   </visual>
+   <self_collide>0</self_collide>
+   <enable_wind>0</enable_wind>
+   <kinematic>0</kinematic>
+  </link>
+
+  <!-- <joint name="box_surface" type="fixed">
+    <pose>0 0 0 0 0 0</pose>
+    <child>sample_surface</child>
+    <parent>support_frame</parent>
+  </joint> -->
+
+  <!-- <joint name="scan_surface" type="fixed">
+    <pose>0 0 0 0 0 0</pose>
+    <child>sample_surface</child>
+    <parent>scan_plane</parent>
+  </joint> -->
+  
+  <joint name="box_top_joint" type="fixed">
+    <pose>0 0 0 0 0 0</pose>
+    <child>box_top</child>
+    <parent>support_frame</parent>
+  </joint>
+  <!-- <pose frame=''>0 0 0 0 0 0</pose> -->
+ </model>
+</sdf>

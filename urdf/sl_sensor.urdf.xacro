@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="structured_light_sensor_robot">
+  <xacro:property name="M_PI" value="3.1415926535897931" />
+
+  <link name="base_link" />
+
+  <joint name="base_sensor" type="fixed">
+    <parent link="base_link"/>
+    <child link="sensor_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <link name="sensor_link">
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.01"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </inertial>
+
+    <visual>
+      <geometry>
+        <mesh filename="package://viewpoint_planning/meshes/zivid_sensor.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="blue">
+        <color rgba="0.0 0.0 0.8 1.0"/> 
+      </material>
+    </visual>
+
+    <collision>
+      <geometry>
+        <box size="0.17 0.06 0.125"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="camera_joint" type="fixed">
+    <parent link="sensor_link"/>
+    <child link="camera_link"/>
+    <origin xyz="0 0 0.05" rpy="-${M_PI/2} -${M_PI/2} 0"/>
+  </joint>
+
+  <link name="camera_link" />
+
+  <joint name="camera_optical_joint" type="fixed">
+    <parent link= "camera_link" />
+    <child link= "camera_link_optical" />
+    <origin xyz="0 0 0" rpy="-${M_PI/2} 0 -${M_PI/2}" />
+  </joint>
+
+  <link name="camera_link_optical" />
+
+  <!-- Gazebo plugin for the structured light sensor -->
+  <gazebo reference="sensor_link">
+        <material>Gazebo/Blue</material>
+  </gazebo>
+
+  <gazebo reference="camera_link">
+        <sensor name="camera" type="depth" update_rate="10" >
+
+            <visualize>true</visualize>
+
+            <pose> 0 0 0 0 0 0 </pose>
+
+            <camera>
+                <horizontal_fov>1.089</horizontal_fov>
+                <image>
+                    <width>640</width>
+                    <height>480</height>
+                    <format>B8G8R8</format>
+                </image>
+                <clip>
+                    <near>0.3</near>
+                    <far>1.1</far>
+                </clip>
+            </camera>
+
+            <plugin name="camera_controller" filename="libgazebo_ros_openni_kinect.so">
+                <imageTopicName>/color/image_raw</imageTopicName>
+                <cameraInfoTopicName>/color/camera_info</cameraInfoTopicName>
+                <depthImageTopicName>/depth/image_raw</depthImageTopicName>
+                <depthImageCameraInfoTopicName>/depth/camera_info</depthImageCameraInfoTopicName>
+                <pointCloudTopicName>/depth/points</pointCloudTopicName>
+
+                <frameName>camera_link_optical</frameName>
+                <pointCloudCutoff>0.3</pointCloudCutoff>
+                <pointCloudCutoffMax>1.5</pointCloudCutoffMax>
+                
+            </plugin>
+
+        </sensor>
+
+    </gazebo>
+
+</robot>

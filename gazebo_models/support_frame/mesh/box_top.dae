@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.82.7 commit date:2020-02-12, commit time:16:20, hash:77d23b0bd76f</authoring_tool>
+    </contributor>
+    <created>2020-03-03T16:06:50</created>
+    <modified>2020-03-03T16:06:50</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_geometries>
+    <geometry id="Simple_Workspace_Rescale-mesh" name="Simple Workspace Rescale">
+      <mesh>
+        <source id="Simple_Workspace_Rescale-mesh-positions">
+          <float_array id="Simple_Workspace_Rescale-mesh-positions-array" count="24">0.1524 0.1524 0 0.1524 -0.1524 0 -0.1524 0.1524 0 -0.1524 -0.1524 0 0.1396999 0.1396999 0 -0.1396999 0.1396999 0 -0.1396999 -0.1396998 0 0.1396999 -0.1396998 0</float_array>
+          <technique_common>
+            <accessor source="#Simple_Workspace_Rescale-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="Simple_Workspace_Rescale-mesh-normals">
+          <float_array id="Simple_Workspace_Rescale-mesh-normals-array" count="3">0 0 1</float_array>
+          <technique_common>
+            <accessor source="#Simple_Workspace_Rescale-mesh-normals-array" count="1" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="Simple_Workspace_Rescale-mesh-vertices">
+          <input semantic="POSITION" source="#Simple_Workspace_Rescale-mesh-positions"/>
+        </vertices>
+        <triangles count="8">
+          <input semantic="VERTEX" source="#Simple_Workspace_Rescale-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Simple_Workspace_Rescale-mesh-normals" offset="1"/>
+          <p>4 0 0 0 5 0 5 0 0 0 2 0 5 0 2 0 6 0 6 0 2 0 3 0 6 0 3 0 7 0 7 0 3 0 1 0 7 0 1 0 4 0 4 0 1 0 0 0</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="Simple_Workspace_Rescale" name="Simple Workspace Rescale" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#Simple_Workspace_Rescale-mesh" name="Simple Workspace Rescale"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

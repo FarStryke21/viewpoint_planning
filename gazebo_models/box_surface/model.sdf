@@ -1,0 +1,48 @@
+<?xml version='1.0'?>
+<sdf version='1.4'>
+<model name="environment">
+  <pose>0 0 0 0 0 0</pose>
+  <static>1</static>
+   <!-- <pose>0 0.635 .085 0 0 0</pose> -->
+  <link name="sample_surface">    
+   <pose>0 0 0 0 0 0</pose>
+   
+   <inertial>
+    <mass>1000</mass>
+   </inertial>
+   <visual name="visual">
+    <geometry>
+     <mesh>
+      <uri>model://box_surface/mesh/sample_surface_rescale.dae</uri>
+     </mesh>
+    </geometry>
+   </visual>
+   <self_collide>0</self_collide>
+   <enable_wind>0</enable_wind>
+   <kinematic>0</kinematic>
+  </link>
+</model>
+
+<!-- <collision name="collision">
+    <geometry>
+     <mesh>
+      <uri>model://box_surface/mesh/sample_surface_rescale.dae</uri>
+     </mesh>
+    </geometry>
+    <surface>
+     <friction>
+       <ode>
+         <mu>2</mu>
+         <mu2>2</mu2>
+       </ode>
+       <torsional>
+         <ode/>
+       </torsional>
+     </friction>
+     <contact>
+       <ode/>
+     </contact>
+     <bounce/>
+    </surface>
+    <max_contacts>10</max_contacts>
+   </collision> -->

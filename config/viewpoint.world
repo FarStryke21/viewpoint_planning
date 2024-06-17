@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="viewpoint_world">
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <!-- Disable gravity -->
+    <gravity>0 0 0</gravity>
+
+    <physics type="ode">
+      <gravity>0 0 0</gravity>
+    </physics>
+  </world>
+</sdf>
