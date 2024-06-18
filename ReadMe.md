@@ -5,7 +5,7 @@
 
 The `viewpoint_planning` package provides a ROS-based framework to spawn a sensor in a Gazebo simulation environment and capture depth and color images from various poses. This package includes the URDF model of the sensor, necessary plugins for depth and color image capturing, and a ROS service to manage the sensor's pose and data capture.
 
-This package is meant a wrapper for simulating the results of algorithms desogn for solving the Coverage Viewpoint Problem.
+This package is meant a wrapper for simulating the results of algorithms designed for solving the Coverage Viewpoint Problem.
 
 <div style="display: flex; justify-content: space-between;">
 <img src="assets/Rviz_viewpointPackage.png" alt="Image 2" style="width: 48%;"/>
